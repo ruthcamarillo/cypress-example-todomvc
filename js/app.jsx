@@ -27,9 +27,9 @@ var app = app || {};
 		componentDidMount: function () {
 			var setState = this.setState;
 			var router = Router({
-				'/': setState.bind(this, {nowShowing: app.ALL_TODOS}),
-				'/active': setState.bind(this, {nowShowing: app.ACTIVE_TODOS}),
-				'/completed': setState.bind(this, {nowShowing: app.COMPLETED_TODOS})
+				'/': setState.bind(this, { nowShowing: app.ALL_TODOS }),
+				'/active': setState.bind(this, { nowShowing: app.ACTIVE_TODOS }),
+				'/completed': setState.bind(this, { nowShowing: app.COMPLETED_TODOS })
 			});
 			router.init('/');
 		},
@@ -63,16 +63,16 @@ var app = app || {};
 		},
 
 		edit: function (todo) {
-			this.setState({editing: todo.id});
+			this.setState({ editing: todo.id });
 		},
 
 		save: function (todoToSave, text) {
 			this.props.model.save(todoToSave, text);
-			this.setState({editing: null});
+			this.setState({ editing: null });
 		},
 
 		cancel: function () {
-			this.setState({editing: null});
+			this.setState({ editing: null });
 		},
 
 		clearCompleted: function () {
@@ -86,12 +86,12 @@ var app = app || {};
 
 			var shownTodos = todos.filter(function (todo) {
 				switch (this.state.nowShowing) {
-				case app.ACTIVE_TODOS:
-					return !todo.completed;
-				case app.COMPLETED_TODOS:
-					return todo.completed;
-				default:
-					return true;
+					case app.ACTIVE_TODOS:
+						return !todo.completed;
+					case app.COMPLETED_TODOS:
+						return todo.completed;
+					default:
+						return true;
 				}
 			}, this);
 
@@ -165,7 +165,7 @@ var app = app || {};
 
 	function render() {
 		React.render(
-			<TodoApp model={model}/>,
+			<TodoApp model={model} />,
 			document.getElementsByClassName('todoapp')[0]
 		);
 	}
